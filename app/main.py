@@ -28,7 +28,6 @@ app = FastAPI(
     - Busca por nome
     - Paginação
     - Filtros avançados
-    - Dados enriquecidos
     """,
     version="1.0.0",
     contact={
