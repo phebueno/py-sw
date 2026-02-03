@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Query, Path
 from typing import Optional
-from app.services.swapi_client import swapi_client
+from app.modules.people.service import PeopleService
+from app.modules.people.schema import People, PeopleListResponse
 
 router = APIRouter(
     prefix="/people",
@@ -8,7 +9,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/", summary="Listar personagens")
+@router.get("/", summary="Listar personagens", response_model=PeopleListResponse)
 async def list_people(
     search: Optional[str] = Query(
         None, 
@@ -30,7 +31,7 @@ async def list_people(
     
     Retorna dados paginados com informações detalhadas de cada personagem.
     """
-    data = await swapi_client.get_people(search=search, page=page)
+    data = await PeopleService.search_people(search=search, page=page)
     
     for person in data.get("results", []):
         person["person_id"] = person["url"].split("/")[-2]
@@ -38,7 +39,7 @@ async def list_people(
     
     return data
 
-@router.get("/{person_id}", summary="Buscar personagem por ID")
+@router.get("/{person_id}", summary="Buscar personagem por ID", response_model=People)
 async def get_person(
     person_id: int = Path(
         ..., 
@@ -57,6 +58,6 @@ async def get_person(
     - 4: Darth Vader
     - 5: Leia Organa
     """
-    data = await swapi_client.get_person(person_id)
+    data = await PeopleService.get_person(person_id)
     
     return data
