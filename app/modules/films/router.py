@@ -1,7 +1,8 @@
 from typing import Optional
 from fastapi import APIRouter, Path, Query
+from app.models.schemas import PaginatedResponse
 from app.modules.films.service import FilmService
-from app.modules.films.schema import Film, FilmListResponse
+from app.modules.films.schema import Film
 
 router = APIRouter(
     prefix="/films",
@@ -10,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", summary="Listar filmes", response_model=FilmListResponse)
+@router.get("/", summary="Listar filmes", response_model=PaginatedResponse[Film])
 async def list_films(
     search: Optional[str] = Query(
         None,

@@ -21,12 +21,3 @@ class People(BaseModel):
     created: str
     edited: str
     url: str
-
-
-class PeopleListResponse(BaseModel):
-    """Resposta paginada de personagens"""
-
-    count: int
-    next: Optional[str]
-    previous: Optional[str]
-    results: List[People]

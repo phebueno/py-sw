@@ -19,11 +19,3 @@ class Planet(BaseModel):
     created: str
     edited: str
     url: str
-
-class PlanetListResponse(BaseModel):
-    """Resposta paginada de planetas"""
-
-    count: int
-    next: Optional[str]
-    previous: Optional[str]
-    results: List[Planet]

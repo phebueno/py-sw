@@ -1,7 +1,8 @@
 from typing import Optional
 from fastapi import APIRouter, Path, Query
+from app.models.schemas import PaginatedResponse
 from app.modules.planets.service import PlanetService
-from app.modules.planets.schema import Planet, PlanetListResponse
+from app.modules.planets.schema import Planet
 
 router = APIRouter(
     prefix="/planets",
@@ -10,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", summary="Listar planetas", response_model=PlanetListResponse)
+@router.get("/", summary="Listar planetas", response_model=PaginatedResponse[Planet])
 async def list_planets(
     search: Optional[str] = Query(
         None,

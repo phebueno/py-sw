@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Query, Path
 from typing import Optional
+from app.models.schemas import PaginatedResponse
 from app.modules.people.service import PeopleService
-from app.modules.people.schema import People, PeopleListResponse
+from app.modules.people.schema import People
 
 router = APIRouter(
     prefix="/people",
@@ -9,7 +10,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/", summary="Listar personagens", response_model=PeopleListResponse)
+@router.get("/", summary="Listar personagens", response_model=PaginatedResponse[People])
 async def list_people(
     search: Optional[str] = Query(
         None, 

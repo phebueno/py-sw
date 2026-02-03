@@ -19,11 +19,3 @@ class Film(BaseModel):
     created: str
     edited: str
     url: str
-
-class FilmListResponse(BaseModel):
-    """Resposta de lista de filmes"""
-
-    count: int
-    next: Optional[str]
-    previous: Optional[str]
-    results: List[Film]
