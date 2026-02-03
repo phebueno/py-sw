@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Planet(BaseModel):
@@ -19,3 +19,11 @@ class Planet(BaseModel):
     created: str
     edited: str
     url: str
+
+class PlanetListResponse(BaseModel):
+    """Resposta paginada de planetas"""
+
+    count: int
+    next: Optional[str]
+    previous: Optional[str]
+    results: List[Planet]
