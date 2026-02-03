@@ -3,11 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from contextlib import asynccontextmanager
 
-from app.modules.people.router import router as characters_router
+from app.modules.people.router import router as people_router
 from app.modules.films.router import router as films_router
 from app.modules.planets.router import router as planets_router
 from app.modules.species.router import router as species_router
 from app.modules.starships.router import router as starships_router
+from app.modules.vehicles.router import router as vehicles_router
 
 from app.core.swapi_client import swapi_client
 
@@ -52,11 +53,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(characters_router, tags=["People"])
+app.include_router(people_router, tags=["People"])
 app.include_router(films_router, tags=["Films"])
 app.include_router(planets_router, tags=["Planets"])
 app.include_router(species_router, tags=["Species"])
 app.include_router(starships_router, tags=["Starships"])
+app.include_router(vehicles_router, tags=["Vehicles"])
 
 
 @app.get("/", include_in_schema=False)
