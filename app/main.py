@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 from contextlib import asynccontextmanager
 
 from app.modules.people.router import router as characters_router
+from app.modules.films.router import router as films_router
 from app.core.swapi_client import swapi_client
 
 
@@ -48,6 +49,7 @@ app.add_middleware(
 )
 
 app.include_router(characters_router, tags=["People"])
+app.include_router(films_router, tags=["Films"])
 # app.include_router(planets.router)
 # app.include_router(starships.router)
 # app.include_router(films.router)

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Film(BaseModel):
@@ -19,3 +19,11 @@ class Film(BaseModel):
     created: str
     edited: str
     url: str
+
+class FilmListResponse(BaseModel):
+    """Resposta de lista de filmes"""
+
+    count: int
+    next: Optional[str]
+    previous: Optional[str]
+    results: List[Film]
