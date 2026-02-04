@@ -9,6 +9,7 @@ from app.modules.planets.router import router as planets_router
 from app.modules.species.router import router as species_router
 from app.modules.starships.router import router as starships_router
 from app.modules.vehicles.router import router as vehicles_router
+from app.modules.swapi.router import router as swapi_router
 
 from app.core.swapi_client import swapi_client
 
@@ -59,6 +60,7 @@ app.include_router(planets_router, tags=["Planets"])
 app.include_router(species_router, tags=["Species"])
 app.include_router(starships_router, tags=["Starships"])
 app.include_router(vehicles_router, tags=["Vehicles"])
+app.include_router(swapi_router, tags=["SWAPI"])
 
 
 @app.get("/", include_in_schema=False)
