@@ -14,7 +14,7 @@ class PlanetService:
         return data
 
     @staticmethod
-    async def list_planets(
+    async def search_planets(
         search: Optional[str] = None,
         page: int = 1,
     ) -> Dict[str, Any]:

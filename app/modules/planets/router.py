@@ -12,7 +12,7 @@ router = APIRouter(
 
 
 @router.get("/", summary="Listar planetas", response_model=PaginatedResponse[Planet])
-async def list_planets(
+async def search_planets(
     search: Optional[str] = Query(
         None,
         description="Buscar planeta por nome",
@@ -28,7 +28,7 @@ async def list_planets(
     """
     Lista planetas do universo Star Wars com busca e paginação.
     """
-    data = await PlanetService.list_planets(search=search, page=page)
+    data = await PlanetService.search_planets(search=search, page=page)
 
     for planet in data.get("results", []):
         planet["planet_id"] = planet["url"].split("/")[-2]

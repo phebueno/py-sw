@@ -14,7 +14,7 @@ class SpeciesService:
         return data
 
     @staticmethod
-    async def list_species(
+    async def search_species(
         search: Optional[str] = None,
         page: int = 1,
     ) -> Dict[str, Any]:

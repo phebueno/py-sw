@@ -16,7 +16,7 @@ router = APIRouter(
     summary="Listar espécies",
     response_model=PaginatedResponse[Species],
 )
-async def list_species(
+async def search_species(
     search: Optional[str] = Query(
         None,
         description="Buscar espécie pelo nome",
@@ -32,7 +32,7 @@ async def list_species(
     """
     Lista espécies do universo Star Wars com paginação e busca.
     """
-    return await SpeciesService.list_species(search=search, page=page)
+    return await SpeciesService.search_species(search=search, page=page)
 
 
 @router.get(

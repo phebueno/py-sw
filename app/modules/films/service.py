@@ -6,7 +6,7 @@ class FilmService:
     """Lógica de negócio para filmes"""
 
     @staticmethod
-    async def list_films(
+    async def search_films(
         search: Optional[str] = None,
         page: int = 1,
     ) -> Dict[str, Any]:

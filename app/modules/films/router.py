@@ -12,7 +12,7 @@ router = APIRouter(
 
 
 @router.get("/", summary="Listar filmes", response_model=PaginatedResponse[Film])
-async def list_films(
+async def search_films(
     search: Optional[str] = Query(
         None,
         description="Buscar filme por título",
@@ -31,7 +31,7 @@ async def list_films(
     A paginação é aplicada localmente, pois a SWAPI
     retorna todos os filmes de uma vez.
     """
-    data = await FilmService.list_films(search=search, page=page)
+    data = await FilmService.search_films(search=search, page=page)
 
     for film in data.get("results", []):
         film["film_id"] = film["url"].split("/")[-2]
