@@ -1,12 +1,13 @@
-from fastapi import APIRouter, Query, Path, HTTPException
 from typing import Optional
 
+from fastapi import APIRouter, HTTPException, Path, Query
+
+from app.modules.films.service import FilmService
 from app.modules.people.service import PeopleService
 from app.modules.planets.service import PlanetService
-from app.modules.films.service import FilmService
+from app.modules.species.service import SpeciesService
 from app.modules.starships.service import StarshipService
 from app.modules.vehicles.service import VehicleService
-from app.modules.species.service import SpeciesService
 
 router = APIRouter(
     prefix="/swapi",
@@ -22,15 +23,16 @@ RESOURCE_MAP = {
     "species": SpeciesService.search_species,
 }
 
+
 @router.get("/{resource}")
 async def generic_search(
     resource: str = Path(..., description="Recurso da SWAPI"),
     search: Optional[str] = Query(None, description="Texto de busca"),
-    page: int = Query(1, ge=1)
+    page: int = Query(1, ge=1),
 ):
     """
     Endpoint genérico para consulta de recursos da SWAPI.
-    
+
     Exemplos:
     - /swapi/people?search=luke
     - /swapi/planets?search=tatooine
@@ -40,9 +42,6 @@ async def generic_search(
     service = RESOURCE_MAP.get(resource)
 
     if not service:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Recurso '{resource}' não é suportado"
-        )
+        raise HTTPException(status_code=400, detail=f"Recurso '{resource}' não é suportado")
 
     return await service(search=search, page=page)

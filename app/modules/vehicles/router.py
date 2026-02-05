@@ -1,8 +1,10 @@
 from typing import Optional
+
 from fastapi import APIRouter, Path, Query
+
 from app.models.schemas import PaginatedResponse
-from app.modules.vehicles.service import VehicleService
 from app.modules.vehicles.schema import Vehicle
+from app.modules.vehicles.service import VehicleService
 
 router = APIRouter(
     prefix="/vehicles",

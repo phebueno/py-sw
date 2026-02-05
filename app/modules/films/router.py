@@ -1,8 +1,10 @@
 from typing import Optional
+
 from fastapi import APIRouter, Path, Query
+
 from app.models.schemas import PaginatedResponse
-from app.modules.films.service import FilmService
 from app.modules.films.schema import Film
+from app.modules.films.service import FilmService
 
 router = APIRouter(
     prefix="/films",
@@ -37,6 +39,8 @@ async def search_films(
         film["film_id"] = film["url"].split("/")[-2]
 
     return data
+
+
 @router.get("/{film_id}", summary="Buscar filme por ID", response_model=Film)
 async def get_film(
     film_id: int = Path(

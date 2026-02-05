@@ -1,8 +1,10 @@
 from typing import Optional
+
 from fastapi import APIRouter, Path, Query
+
 from app.models.schemas import PaginatedResponse
-from app.modules.species.service import SpeciesService
 from app.modules.species.schema import Species
+from app.modules.species.service import SpeciesService
 
 router = APIRouter(
     prefix="/species",

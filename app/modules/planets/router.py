@@ -1,8 +1,10 @@
 from typing import Optional
+
 from fastapi import APIRouter, Path, Query
+
 from app.models.schemas import PaginatedResponse
-from app.modules.planets.service import PlanetService
 from app.modules.planets.schema import Planet
+from app.modules.planets.service import PlanetService
 
 router = APIRouter(
     prefix="/planets",

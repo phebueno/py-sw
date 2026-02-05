@@ -1,4 +1,5 @@
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
+
 from app.core.swapi_client import swapi_client
 
 
@@ -21,9 +22,7 @@ class PeopleService:
         return data
 
     @staticmethod
-    async def search_people(
-        search: Optional[str] = None, page: int = 1
-    ) -> Dict[str, Any]:
+    async def search_people(search: Optional[str] = None, page: int = 1) -> Dict[str, Any]:
         """
         Busca personagens com filtros
 

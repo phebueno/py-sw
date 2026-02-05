@@ -1,8 +1,11 @@
-from pydantic import BaseModel
 from typing import List
+
+from pydantic import BaseModel
+
 
 class Starship(BaseModel):
     """Modelo de nave do Star Wars"""
+
     name: str
     model: str
     manufacturer: str

@@ -1,8 +1,10 @@
 from typing import Optional
+
 from fastapi import APIRouter, Path, Query
+
 from app.models.schemas import PaginatedResponse
-from app.modules.starships.service import StarshipService
 from app.modules.starships.schema import Starship
+from app.modules.starships.service import StarshipService
 
 router = APIRouter(
     prefix="/starships",

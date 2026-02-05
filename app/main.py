@@ -1,17 +1,17 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-from contextlib import asynccontextmanager
 
-from app.modules.people.router import router as people_router
+from app.core.swapi_client import swapi_client
 from app.modules.films.router import router as films_router
+from app.modules.people.router import router as people_router
 from app.modules.planets.router import router as planets_router
 from app.modules.species.router import router as species_router
 from app.modules.starships.router import router as starships_router
-from app.modules.vehicles.router import router as vehicles_router
 from app.modules.swapi.router import router as swapi_router
-
-from app.core.swapi_client import swapi_client
+from app.modules.vehicles.router import router as vehicles_router
 
 
 @asynccontextmanager

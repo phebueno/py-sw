@@ -1,5 +1,6 @@
+from typing import Any, Dict, Optional
+
 import httpx
-from typing import Optional, Dict, Any
 from fastapi import HTTPException
 
 
@@ -9,9 +10,7 @@ class SWAPIClient:
     BASE_URL = "https://swapi.dev/api"
 
     def __init__(self):
-        self.client = httpx.AsyncClient(
-            timeout=10.0, headers={"User-Agent": "StarWars-API/1.0"}
-        )
+        self.client = httpx.AsyncClient(timeout=10.0, headers={"User-Agent": "StarWars-API/1.0"})
 
     async def close(self):
         """Fecha o cliente HTTP"""
@@ -53,9 +52,7 @@ class SWAPIClient:
             raise HTTPException(status_code=504, detail="Timeout ao conectar com SWAPI")
 
         except httpx.RequestError as e:
-            raise HTTPException(
-                status_code=503, detail=f"Erro ao conectar com SWAPI: {str(e)}"
-            )
+            raise HTTPException(status_code=503, detail=f"Erro ao conectar com SWAPI: {str(e)}")
 
 
 swapi_client = SWAPIClient()
