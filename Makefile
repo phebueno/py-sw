@@ -38,9 +38,6 @@ test-cov:
 	uv run pytest --cov=app --cov-report=html
 	@echo "✅ Cobertura gerada em htmlcov/index.html"
 
-test-watch:
-	uv run pytest-watch
-
 # Docker Commands
 docker-build:
 	docker build -t star-wars-api:latest .
