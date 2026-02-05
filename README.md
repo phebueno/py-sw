@@ -15,3 +15,8 @@ OU
 ```
 docker-compose up --build
 ```
+
+Para submit uma nova versão com deploy
+```
+gcloud builds submit
+```
